@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { RepositoryService } from './service/repository/repository.service';
 import { OrganizationService } from './service/organization/organization.service';
 import { Utils } from './utils/util.service';
@@ -12,6 +13,7 @@ import { OrganizationComponent } from './components/organization/organization.co
 import { RepositoryComponent } from './components/repository/repository.component';
 import { UserComponent } from './components/user/user.component';
 import { UserService } from './service/user/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { UserService } from './service/user/user.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
   ],
   providers: [
     HelloWorldService,
