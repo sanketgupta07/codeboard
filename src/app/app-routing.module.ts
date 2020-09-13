@@ -3,23 +3,24 @@ import { RepositoryComponent } from './components/repository/repository.componen
 import { OrganizationComponent } from './components/organization/organization.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { URL } from './utils/url';
 
 
 const appRoutes: Routes = [
   {
-    path: 'org', children:
+    path: URL.ORG, children:
       [
         { path: '', component: OrganizationComponent }
       ]
   },
   {
-    path: 'repo', children:
+    path: URL.REPO, children:
       [
         { path: '', component: RepositoryComponent }
       ]
   },
   {
-    path: 'user', children:
+    path: URL.USER, children:
       [
         { path: '', component: UserComponent }
       ]
