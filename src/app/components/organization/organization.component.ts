@@ -18,6 +18,7 @@ export class OrganizationComponent implements OnInit {
     this.getOrg(org);
   }
 
+  // tslint:disable-next-line:typedef
   getOrg(org: string){
     this.orgService.getOrg(org).subscribe((data: Organization) => {
       this.org = data;

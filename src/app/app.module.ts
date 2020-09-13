@@ -1,8 +1,8 @@
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { RepositoryService } from './service/repository/repository.service';
 import { OrganizationService } from './service/organization/organization.service';
 import { Utils } from './utils/util.service';
-import { HelloWorldService } from './service/hello-world.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     UserComponent,
     OrganizationComponent,
-    RepositoryComponent
+    RepositoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    HelloWorldService,
     Utils,
     OrganizationService,
     RepositoryService,

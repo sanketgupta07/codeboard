@@ -21,8 +21,9 @@ export class OrganizationService {
   }
 
   getOrg(org: string): Observable<any>{
-
-    return this.http.get(ApiUtil.ENDPOINT_URL + '/orgs/' + org, {headers: this.header} ).pipe(
+    const url = ApiUtil.ENDPOINT_URL + '/orgs/' + org;
+    console.log('Url:' + url);
+    return this.http.get(url, {headers: this.header} ).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
