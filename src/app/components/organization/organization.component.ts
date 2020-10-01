@@ -14,13 +14,13 @@ export class OrganizationComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('OrganizationComponent: Init.');
-    const org = 'github';
-    this.getOrg(org);
+    const orgName = 'github';
+    this.getOrg(orgName);
   }
 
   // tslint:disable-next-line:typedef
-  getOrg(org: string){
-    this.orgService.getOrg(org).subscribe((data: Organization) => {
+  getOrg(orgName: string){
+    this.orgService.getOrg(orgName).subscribe((data: Organization) => {
       this.org = data;
     });
   }
