@@ -1,4 +1,6 @@
-# codeboard
-A dashboard for inner-source projects.
+###React and GraphQL
+This application is a test application for learning graphQL
 
-Plan Document: [codeboard-Onenote](https://1drv.ms/o/s!BAsunX7Pspgui2oRwJtEvViWYtjX?e=4tUMqMxVg0CxrFwWt7zo-g&at=9)
+It uses Github graphqlapi to fetch data
+
+Simple and Basic capability check
