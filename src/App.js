@@ -1,10 +1,12 @@
 import React from "react";
 import Organization from "./component/organization";
+import Repostory from "./component/repository";
 
 export default function App() {
   return (
-    <main>
+    <>
       <Organization login="facebook" />
-    </main>
+      <Repostory login="facebook" name="redex" />
+    </>
   );
 }
