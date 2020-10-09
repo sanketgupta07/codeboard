@@ -1,30 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import client from "./apollo";
 import { ApolloProvider } from "react-apollo";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import green from "@material-ui/core/colors/green";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: green[500],
-    },
-  },
-});
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AppRouter from "./router";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+      <AppRouter />
   </ApolloProvider>,
   document.getElementById("root")
 );
