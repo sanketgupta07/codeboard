@@ -1,10 +1,11 @@
 import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
+import { Card } from "react-bootstrap";
 
 const GET_REPO = gql`
   query getRepo($login: String!, $name: String!) {
-    repo: repository(owner: $login, name: $name) {
+    repository(owner: $login, name: $name) {
       name
       owner {
         login
@@ -34,10 +35,18 @@ export default function Repostory(params) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   // console.log(data);
+  const repo= data.repository;
   return (
-    <>
-          {data.repo.openGraphImageUrl}
-          {data.repo.name}
-        </>
+   <Card bg="dark" text="white" style={{ width: "18rem" }}>
+<Card.Body>
+  <Card.Title>{repo.name}</Card.Title>
+  <Card.Text>
+    {repo.description}
+  </Card.Text>
+  <Card.Text>
+    <small className="text-muted">Last updated 3 mins ago</small>
+  </Card.Text>
+</Card.Body>
+</Card>
   );
 }

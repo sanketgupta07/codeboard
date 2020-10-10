@@ -15,7 +15,7 @@ export default function AppNav() {
             Dashboard
           </Link>
           <Link className="nav-link" to="about">
-            AboutUs
+            About Us
           </Link>
         </Nav>
       </Navbar>

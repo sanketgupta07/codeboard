@@ -6,7 +6,7 @@ import { Button, Card } from "react-bootstrap";
 
 const GET_USER = gql`
   query getOrg($login: String!) {
-    org: organization(login: $login) {
+    organization(login: $login) {
       name
       description
       avatarUrl
@@ -28,12 +28,12 @@ export default function Organization(params) {
   // console.log(data);
   return (
     <Card bg="dark" text="white" style={{ width: "18rem" }}>
-    <Card.Img variant="top" src={data.org.avatarUrl} />
+    <Card.Img variant="top" src={data.organization.avatarUrl} />
     <Card.Body>
-      <Card.Title>{data.org.name} </Card.Title>
-      <Card.Text>{data.org.description} </Card.Text>
+      <Card.Title>{data.organization.name} </Card.Title>
+      <Card.Text>{data.organization.description} </Card.Text>
     </Card.Body>
-    <Button>Repos({data.org.repositories.totalCount})</Button>
+    <Button onClick={params.repos}>Repos({data.organization.repositories.totalCount})</Button>
   </Card>
   );
 }
