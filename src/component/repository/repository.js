@@ -24,7 +24,9 @@ const GET_REPO = gql`
         totalCount
         nodes{
           id
-          name
+          tag{
+            name
+          }
           url
         }
       }
@@ -68,6 +70,8 @@ export default function Repostory(params) {
     <Card.Link href={repo.owner.url} target="_blank">
       <small className="text-muted">{repo.isInOrganization === true?<BiBuildings/>:<BiUser/>} {repo.owner.login}</small>
     </Card.Link>
+    {repo.releases.totalCount>0? repo.releases.nodes.map(release => <Card.Link key={release.id} href={release.url} target="_blank">
+    <small className="text-muted"><FcCableRelease/>{release.tag.name}</small></Card.Link>):"" }
     <Card.Link>
       <small className="text-muted"><HiScale/> {repo.licenseInfo.name}</small>
     </Card.Link>
@@ -75,12 +79,8 @@ export default function Repostory(params) {
   <Card.Text>
     <small>{repo.description}</small>
   </Card.Text>
-  {repo.releases.totalCount>0? repo.releases.nodes.map(release => <Card.Text key={release.id}><Card.Link href={release.url} target="_blank">
-    <FcCableRelease/><small>{release.name}</small></Card.Link>
-  </Card.Text>):"" }
-  
   </Card.Body>
-  <Card.Footer className="text-muted">
+  <Card.Footer>
   <Card.Link className="text-muted"><BiGitRepoForked/>({repo.forkCount})</Card.Link>
   <Card.Link className="text-muted"><AiOutlineStar/>({repo.stargazerCount})</Card.Link>
   {repo.languages.nodes.map(node => <Card.Link key={node.id} className="text-muted"><VscCircleFilled color={node.color}/>{node.name}</Card.Link> )}

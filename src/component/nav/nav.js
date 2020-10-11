@@ -11,7 +11,7 @@ export default function AppNav() {
           <Link className="nav-link" to="home">
             Home
           </Link>
-          <Link className="nav-link" to="dashboard">
+          <Link className="nav-link" to="org">
           Organization
           </Link>
           <Link className="nav-link" to="about">
