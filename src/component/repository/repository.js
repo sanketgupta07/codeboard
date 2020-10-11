@@ -3,14 +3,30 @@ import React from "react";
 import { useQuery } from "react-apollo";
 import { Card } from "react-bootstrap";
 import {AiOutlineStar} from "react-icons/ai" 
-import {BiGitRepoForked} from "react-icons/bi"
+import {BiGitRepoForked, BiBuildings, BiUser} from "react-icons/bi"
+import {VscCircleFilled} from  "react-icons/vsc"
+import {FcCableRelease} from "react-icons/fc"
+import {HiScale} from "react-icons/hi"
 
 const GET_REPO = gql`
   query getRepo($login: String!, $name: String!) {
     repository(owner: $login, name: $name) {
       name
+      url
       owner {
         login
+        url
+      }
+      licenseInfo{
+        name
+      }
+      releases(last:1){
+        totalCount
+        nodes{
+          id
+          name
+          url
+        }
       }
       forkCount
       description
@@ -20,7 +36,9 @@ const GET_REPO = gql`
       languages(last: 3, orderBy: { field: SIZE, direction: ASC }) {
         totalCount
         nodes {
+          id
           name
+          color
         }
       }
     }
@@ -43,14 +61,30 @@ export default function Repostory(params) {
   return (
    <Card bg="Light" text="dark" border="info">
 <Card.Body>
-  <Card.Title>{repo.name}</Card.Title>
-  <Card.Subtitle>{repo.owner.login}</Card.Subtitle>
+  <Card.Title>
+    <Card.Link href={repo.url} target="_blank">{repo.name}</Card.Link>   
+    </Card.Title>
+  <Card.Subtitle>
+    <Card.Link href={repo.owner.url} target="_blank">
+      <small className="text-muted">{repo.isInOrganization === true?<BiBuildings/>:<BiUser/>} {repo.owner.login}</small>
+    </Card.Link>
+    <Card.Link>
+      <small className="text-muted"><HiScale/> {repo.licenseInfo.name}</small>
+    </Card.Link>
+  </Card.Subtitle>
   <Card.Text>
-    <small className="text-muted">{repo.description}</small>
+    <small>{repo.description}</small>
   </Card.Text>
-  <Card.Link><BiGitRepoForked/>({repo.forkCount})</Card.Link>
-  <Card.Link><AiOutlineStar/>({repo.stargazerCount})</Card.Link>
-</Card.Body>
+  {repo.releases.totalCount>0? repo.releases.nodes.map(release => <Card.Text key={release.id}><Card.Link href={release.url} target="_blank">
+    <FcCableRelease/><small>{release.name}</small></Card.Link>
+  </Card.Text>):"" }
+  
+  </Card.Body>
+  <Card.Footer className="text-muted">
+  <Card.Link className="text-muted"><BiGitRepoForked/>({repo.forkCount})</Card.Link>
+  <Card.Link className="text-muted"><AiOutlineStar/>({repo.stargazerCount})</Card.Link>
+  {repo.languages.nodes.map(node => <Card.Link key={node.id} className="text-muted"><VscCircleFilled color={node.color}/>{node.name}</Card.Link> )}
+  </Card.Footer>
 </Card>
   );
 }
