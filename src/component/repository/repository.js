@@ -2,6 +2,8 @@ import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
 import { Card } from "react-bootstrap";
+import {AiOutlineStar} from "react-icons/ai" 
+import {BiGitRepoForked} from "react-icons/bi"
 
 const GET_REPO = gql`
   query getRepo($login: String!, $name: String!) {
@@ -31,21 +33,23 @@ export default function Repostory(params) {
       name: params.name,
     },
   });
-  console.log(error);
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) {
+    console.log(error);
+    return <p>Error :(</p>;
+    }
   // console.log(data);
   const repo= data.repository;
   return (
-   <Card bg="dark" text="white" style={{ width: "18rem" }}>
+   <Card bg="Light" text="dark" border="info">
 <Card.Body>
   <Card.Title>{repo.name}</Card.Title>
+  <Card.Subtitle>{repo.owner.login}</Card.Subtitle>
   <Card.Text>
-    {repo.description}
+    <small className="text-muted">{repo.description}</small>
   </Card.Text>
-  <Card.Text>
-    <small className="text-muted">Last updated 3 mins ago</small>
-  </Card.Text>
+  <Card.Link><BiGitRepoForked/>({repo.forkCount})</Card.Link>
+  <Card.Link><AiOutlineStar/>({repo.stargazerCount})</Card.Link>
 </Card.Body>
 </Card>
   );

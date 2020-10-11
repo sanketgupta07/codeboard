@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./component/home/home";
 import "./App.css";
 import AppFooter from "./footer";
+import OrgPage from "./component/organization/orgpage";
 
 function AppRouter(params) {
   const browserHistory = createBrowserHistory();
@@ -20,8 +21,8 @@ function AppRouter(params) {
             <Route path="/about">
               <AboutUs />
             </Route>            
-             <Route path="/home">
-              <Home />
+             <Route path="/org">
+              <OrgPage />
             </Route>
             <Route path="/">
               <Home />

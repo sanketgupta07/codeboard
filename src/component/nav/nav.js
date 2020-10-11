@@ -12,7 +12,7 @@ export default function AppNav() {
             Home
           </Link>
           <Link className="nav-link" to="dashboard">
-            Dashboard
+          Organization
           </Link>
           <Link className="nav-link" to="about">
             About Us

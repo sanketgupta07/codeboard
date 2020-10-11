@@ -6,8 +6,9 @@ import Repostory from "./repository"
 
 const GET_REPOS_NAMES= gql`query getOrg($login: String!) {
     organization(login: $login) {
-      repositories(first:10) {
+      repositories(last:12 orderBy: {field:STARGAZERS, direction: ASC}) {
       nodes{
+        id
         name
       }
       }
@@ -26,10 +27,8 @@ export default function RepositoryList(params) {
         <CardColumns>
         {data.organization.repositories.nodes.map(node => {
             return (
-                <>
-                <Repostory name={node.name} login={params.login}/>
-                </>
-            );
+                <Repostory key={node.id} name={node.name} login={params.login}/>
+                           );
         }
         
         )}
