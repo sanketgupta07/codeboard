@@ -1,6 +1,17 @@
-###React and GraphQL
-This application is a test application for learning graphQL
+### Codeboard
 
-It uses Github graphqlapi to fetch data
+Matrix and statistics from Github
 
-Simple and Basic capability check
+# Setup
+
+```
+    git clone https://github.com/sanketgupta07/codeboard.git
+    cd codeboard
+    npm i
+    npm start
+
+```
+
+# Bug
+
+Open a new bug/issue at [Issue](https://github.com/sanketgupta07/codeboard/issues/new)
