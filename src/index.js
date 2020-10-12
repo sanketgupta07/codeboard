@@ -4,12 +4,12 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import client from "./apollo";
 import { ApolloProvider } from "react-apollo";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import AppRouter from "./router";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-      <AppRouter />
+    <AppRouter />
   </ApolloProvider>,
   document.getElementById("root")
 );

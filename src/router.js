@@ -15,19 +15,19 @@ function AppRouter(params) {
     <>
       <Router history={browserHistory}>
         <div>
-          <AppNav />          
-            <div className="body" fluid="sm">
-          <Switch>
-            <Route path="/about">
-              <AboutUs />
-            </Route>            
-             <Route path="/org">
-              <OrgPage />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <AppNav />
+          <div className="body" fluid="sm">
+            <Switch>
+              <Route path="/about">
+                <AboutUs />
+              </Route>
+              <Route path="/org">
+                <OrgPage />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
           </div>
         </div>
       </Router>
