@@ -1,37 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBrowserHistory } from "history";
 import { Route, Router, Switch } from "react-router";
 import AboutUs from "./component/about/aboutus";
 import AppNav from "./component/nav/nav";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./component/home/home";
 import "./App.css";
 import AppFooter from "./footer";
 import OrgPage from "./component/organization/orgpage";
+import { Col, Container, Row } from "react-bootstrap";
+import RankNav from "./component/sidenav/ranknav";
+import TopRepo from "./component/repository/toprepos";
 
 function AppRouter(params) {
   const browserHistory = createBrowserHistory();
+  const [topReposUrl, setTopReposUrl] = useState();
+  const rankNavClick = (query) => {
+    const url = `https://api.github.com/search/repositories?q=${query}`;
+    setTopReposUrl(url);
+  };
   return (
     <>
       <Router history={browserHistory}>
-        <div>
-          <AppNav />
-          <div className="body" fluid="sm">
-            <Switch>
-              <Route path="/about">
-                <AboutUs />
-              </Route>
-              <Route path="/org">
-                <OrgPage />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </div>
-        </div>
+        <AppNav />
+        <Container fluid>
+          <Row>
+            <Col className="app-header"></Col>
+          </Row>
+          <Row>
+            <Col className="app-left" sm="2">
+              <Switch>
+                <Route path="/home">
+                  <RankNav onClick={rankNavClick} />
+                </Route>
+              </Switch>
+            </Col>
+            <Col className="app-center" sm="10">
+              <Switch>
+                <Route path="/about">
+                  <AboutUs />
+                </Route>
+                <Route path="/org">
+                  <OrgPage />
+                </Route>
+                <Route path="/home">
+                  <TopRepo url={topReposUrl} />
+                </Route>
+              </Switch>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="app-footer">
+              <AppFooter />
+            </Col>
+          </Row>
+        </Container>
       </Router>
-      <AppFooter />
     </>
   );
 }

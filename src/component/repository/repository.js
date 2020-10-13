@@ -85,11 +85,11 @@ export default function Repostory(params) {
                 </Card.Link>
               ))
             : ""}
-          <Card.Link>
+          {repo.licenseInfo===null?"":<Card.Link>
             <small className="text-muted">
               <HiScale /> {repo.licenseInfo.name}
             </small>
-          </Card.Link>
+          </Card.Link>}
         </Card.Subtitle>
         <Card.Text>
           <small>{repo.description}</small>

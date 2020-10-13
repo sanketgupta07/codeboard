@@ -27,11 +27,9 @@ export default function RepositoryList(params) {
   if (error) return <p>Error :(</p>;
   return (
     <CardColumns>
-      {data.organization.repositories.nodes.map((node) => {
-        return (
-          <Repostory key={node.id} name={node.name} login={params.login} />
-        );
-      })}
+      {data.organization.repositories.nodes.map((node) => (
+        <Repostory key={node.id} name={node.name} login={params.login} />
+      ))}
     </CardColumns>
   );
 }

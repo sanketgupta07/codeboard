@@ -1,21 +1,28 @@
-.body {
+.app-header {
   background-color: #282c34;
-  min-height: 80vh;
+  min-height: 0.5vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  /* font-size: calc(10px + 2vmin); */
-  /* color: white; */
+  justify-content: center;
+  color: white;
 }
 
-.footer {
+.app-footer {
   background-color: #282c34;
   min-height: 15vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* font-size: calc(0.5px + 2vmin); */
+  color: white;
+}
+.app-left {
+  background-color: #282c34;
+  color: white;
+}
+.app-center {
+  background-color: #282c34;
+  min-height: 80vh;
   color: white;
 }
