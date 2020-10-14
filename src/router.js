@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createBrowserHistory } from "history";
-import { Route, Router, Switch } from "react-router";
+import { Route, Switch } from "react-router";
 import AboutUs from "./component/about/aboutus";
 import AppNav from "./component/nav/nav";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +10,7 @@ import OrgPage from "./component/organization/orgpage";
 import { Col, Container, Row } from "react-bootstrap";
 import RankNav from "./component/sidenav/ranknav";
 import TopRepo from "./component/repository/toprepos";
+import { BrowserRouter } from "react-router-dom";
 
 function AppRouter(params) {
   const browserHistory = createBrowserHistory();
@@ -20,7 +21,7 @@ function AppRouter(params) {
   };
   return (
     <>
-      <Router history={browserHistory}>
+      <BrowserRouter history={browserHistory}>
         <AppNav />
         <Container fluid>
           <Row>
@@ -54,7 +55,7 @@ function AppRouter(params) {
             </Col>
           </Row>
         </Container>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }

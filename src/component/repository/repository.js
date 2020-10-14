@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import { AiOutlineStar } from "react-icons/ai";
 import { BiGitRepoForked, BiBuildings, BiUser } from "react-icons/bi";
 import { VscCircleFilled } from "react-icons/vsc";
@@ -53,7 +53,14 @@ export default function Repostory(params) {
       name: params.name,
     },
   });
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <>
+        <Spinner animation="grow" variant="light" size="sm" />
+        <Spinner animation="grow" variant="light" size="sm" />
+        <Spinner animation="grow" variant="light" size="sm" />
+      </>
+    );
   if (error) {
     console.log(error);
     return <p>Error :(</p>;
@@ -85,11 +92,15 @@ export default function Repostory(params) {
                 </Card.Link>
               ))
             : ""}
-          {repo.licenseInfo===null?"":<Card.Link>
-            <small className="text-muted">
-              <HiScale /> {repo.licenseInfo.name}
-            </small>
-          </Card.Link>}
+          {repo.licenseInfo === null ? (
+            ""
+          ) : (
+            <Card.Link>
+              <small className="text-muted">
+                <HiScale /> {repo.licenseInfo.name}
+              </small>
+            </Card.Link>
+          )}
         </Card.Subtitle>
         <Card.Text>
           <small>{repo.description}</small>

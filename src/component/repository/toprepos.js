@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { CardColumns } from "react-bootstrap";
+import { CardColumns, Spinner } from "react-bootstrap";
 import Repostory from "./repository";
 
 export default function TopRepo(params) {
-  const [data, setData] = useState({ items: [] });
+  const [appState, setAppState] = useState(false);
+  const [data, setData] = useState({
+    items: [],
+    loading: false,
+  });
 
   useEffect(() => {
+    setAppState(true);
     const fetchData = async () => {
       const result = await fetch(params.url);
       const respData = await result.json();
       setData(respData);
+      setAppState(false);
     };
     fetchData();
   }, [params.url]);
-
+  if (appState)
+    return (
+      <>
+        <Spinner animation="grow" variant="light" />
+        <Spinner animation="grow" variant="light" />
+        <Spinner animation="grow" variant="light" />
+      </>
+    );
   return (
     <CardColumns>
       {data.items.map((node) => (

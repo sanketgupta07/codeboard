@@ -49,6 +49,7 @@ export default function RankNav(params) {
                 Forks
               </option>
               <option value="stars">Stars</option>
+              <option value="watchers">Watchers</option>
             </Form.Control>
           </Form.Group>
         </Form>
