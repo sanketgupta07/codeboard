@@ -6,10 +6,13 @@ export default function AppNav() {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand as={Link} to="home">
+        <Navbar.Brand as={Link} to="/">
           [ code ]
         </Navbar.Brand>
         <Nav className="mr-auto">
+          <Nav.Link as={Link} className="nav-link" to="toprepo">
+            Top Most Repo
+          </Nav.Link>
           <Nav.Link as={Link} className="nav-link" to="org">
             Organization
           </Nav.Link>

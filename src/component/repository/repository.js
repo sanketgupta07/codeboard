@@ -2,8 +2,13 @@ import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
 import { Card, Spinner } from "react-bootstrap";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiGitRepoForked, BiBuildings, BiUser } from "react-icons/bi";
+import { AiOutlineStar, AiOutlineEye } from "react-icons/ai";
+import {
+  BiGitRepoForked,
+  BiBuildings,
+  BiUser,
+  BiErrorCircle,
+} from "react-icons/bi";
 import { VscCircleFilled } from "react-icons/vsc";
 import { FcCableRelease } from "react-icons/fc";
 import { HiScale } from "react-icons/hi";
@@ -35,6 +40,9 @@ const GET_REPO = gql`
       openGraphImageUrl
       isInOrganization
       stargazerCount
+      watchers {
+        totalCount
+      }
       languages(last: 3, orderBy: { field: SIZE, direction: ASC }) {
         totalCount
         nodes {
@@ -53,17 +61,15 @@ export default function Repostory(params) {
       name: params.name,
     },
   });
-  if (loading)
-    return (
-      <>
-        <Spinner animation="grow" variant="light" size="sm" />
-        <Spinner animation="grow" variant="light" size="sm" />
-        <Spinner animation="grow" variant="light" size="sm" />
-      </>
-    );
+  if (loading) return <Spinner animation="grow" variant="light" size="sm" />;
   if (error) {
     console.log(error);
-    return <p>Error :(</p>;
+    return (
+      <>
+        <BiErrorCircle style={{ color: "red" }} />
+        &nbsp; Oops..an Error
+      </>
+    );
   }
   // console.log(data);
   const repo = data.repository;
@@ -112,6 +118,9 @@ export default function Repostory(params) {
         </Card.Link>
         <Card.Link className="text-muted">
           <AiOutlineStar />({repo.stargazerCount})
+        </Card.Link>
+        <Card.Link className="text-muted">
+          <AiOutlineEye />({repo.watchers.totalCount})
         </Card.Link>
         {repo.languages.nodes.map((node) => (
           <Card.Link key={node.id} className="text-muted">

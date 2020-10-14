@@ -11,8 +11,8 @@ export default function RankNav(params) {
       navState.language !== null &&
       navState.language !== "" &&
       navState.language !== "null"
-        ? `language:${navState.language}&${navState.filter}:>0&sort=${navState.filter}&per_page=10`
-        : `${navState.filter}:>0&sort=${navState.filter}&per_page=10`;
+        ? `search/repositories?q=language:${navState.language}&${navState.filter}:>0&sort=${navState.filter}&per_page=10`
+        : `search/repositories?q=${navState.filter}:>0&sort=${navState.filter}&per_page=10`;
     params.onClick(query);
   });
   const languages = [
@@ -55,9 +55,9 @@ export default function RankNav(params) {
         </Form>
       </Card.Header>
       <Card.Footer>Language Filter</Card.Footer>
-      <ListGroup variant="flush">
+      <ListGroup as="ul" variant="flush">
         {languages.map((lang) => (
-          <ListGroup.Item key={Math.random()} variant="light">
+          <ListGroup.Item as="li" key={Math.random()} variant="light">
             <Card.Link
               as="a"
               onClick={() =>

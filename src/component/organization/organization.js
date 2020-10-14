@@ -1,7 +1,8 @@
 import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
+import { BiErrorCircle } from "react-icons/bi";
 
 const GET_USER = gql`
   query getOrg($login: String!) {
@@ -21,8 +22,14 @@ export default function Organization(params) {
   });
   if (params.login === "") return <></>;
   // console.log(error);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Spinner animation="grow" variant="light" size="sm" />;
+  if (error)
+    return (
+      <>
+        <BiErrorCircle style={{ color: "red" }} />
+        &nbsp; Oops..an Error
+      </>
+    );
   // console.log(data);
   return (
     <Card bg="dark" text="white" style={{ width: "18rem" }}>

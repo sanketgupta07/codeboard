@@ -12,7 +12,6 @@ function UserInput(params) {
     <Form>
       <InputGroup className="mb-3">
         <FormControl
-          placeholder="Github Username"
           value={input}
           onChange={(event) => setInput(event.target.value)}
           required

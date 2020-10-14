@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createBrowserHistory } from "history";
 import { Route, Switch } from "react-router";
 import AboutUs from "./component/about/aboutus";
 import AppNav from "./component/nav/nav";
@@ -11,17 +10,17 @@ import { Col, Container, Row } from "react-bootstrap";
 import RankNav from "./component/sidenav/ranknav";
 import TopRepo from "./component/repository/toprepos";
 import { BrowserRouter } from "react-router-dom";
+import Home from "./component/home/home";
 
 function AppRouter(params) {
-  const browserHistory = createBrowserHistory();
   const [topReposUrl, setTopReposUrl] = useState();
   const rankNavClick = (query) => {
-    const url = `https://api.github.com/search/repositories?q=${query}`;
+    const url = `https://api.github.com/${query}`;
     setTopReposUrl(url);
   };
   return (
     <>
-      <BrowserRouter history={browserHistory}>
+      <BrowserRouter>
         <AppNav />
         <Container fluid>
           <Row>
@@ -30,7 +29,7 @@ function AppRouter(params) {
           <Row>
             <Col className="app-left" sm="2">
               <Switch>
-                <Route path="/home">
+                <Route path="/toprepo">
                   <RankNav onClick={rankNavClick} />
                 </Route>
               </Switch>
@@ -43,8 +42,11 @@ function AppRouter(params) {
                 <Route path="/org">
                   <OrgPage />
                 </Route>
-                <Route path="/home">
+                <Route path="/toprepo">
                   <TopRepo url={topReposUrl} />
+                </Route>
+                <Route path="/">
+                  <Home />
                 </Route>
               </Switch>
             </Col>
