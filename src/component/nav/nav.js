@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import { BiChalkboard } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 export default function AppNav() {
@@ -7,7 +8,7 @@ export default function AppNav() {
     <>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand as={Link} to="/">
-          [ code ]
+          <BiChalkboard />
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} className="nav-link" to="toprepo">
