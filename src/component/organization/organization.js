@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import React from "react";
 import { useQuery } from "react-apollo";
 import { Button, Card, Spinner } from "react-bootstrap";
-import { BiErrorCircle } from "react-icons/bi";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const GET_USER = gql`
   query getOrg($login: String!) {
@@ -26,7 +26,7 @@ export default function Organization(params) {
   if (error)
     return (
       <>
-        <BiErrorCircle style={{ color: "red" }} />
+        <RiErrorWarningLine style={{ color: "red" }} />
         &nbsp; Oops..an Error
       </>
     );

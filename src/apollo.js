@@ -9,11 +9,11 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
+      authorization: `Bearer ${process.env.REACT_APP_GITHUB_ACCESS_TOKEN}`,
     },
   }));
 
-  // console.log(process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
+  // console.log(process.env.REACT_APP_GITHUB_ACCESS_TOKEN);
   return forward(operation);
 });
 

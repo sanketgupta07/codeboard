@@ -3,15 +3,15 @@ import React from "react";
 import { useQuery } from "react-apollo";
 import { Card, Spinner } from "react-bootstrap";
 import { AiOutlineStar, AiOutlineEye } from "react-icons/ai";
-import {
-  BiGitRepoForked,
-  BiBuildings,
-  BiUser,
-  BiErrorCircle,
-} from "react-icons/bi";
-import { VscCircleFilled } from "react-icons/vsc";
+import { GoRepoForked } from "react-icons/go";
+import { CgPlayStop } from "react-icons/cg";
 import { FcCableRelease } from "react-icons/fc";
 import { HiScale } from "react-icons/hi";
+import {
+  RiBuildingLine,
+  RiErrorWarningLine,
+  RiUser3Fill,
+} from "react-icons/ri";
 
 const GET_REPO = gql`
   query getRepo($login: String!, $name: String!) {
@@ -66,7 +66,7 @@ export default function Repostory(params) {
     console.log(error);
     return (
       <>
-        <BiErrorCircle style={{ color: "red" }} />
+        <RiErrorWarningLine style={{ color: "red" }} />
         &nbsp; Oops..an Error
       </>
     );
@@ -84,7 +84,11 @@ export default function Repostory(params) {
         <Card.Subtitle>
           <Card.Link href={repo.owner.url} target="_blank">
             <small className="text-muted">
-              {repo.isInOrganization === true ? <BiBuildings /> : <BiUser />}{" "}
+              {repo.isInOrganization === true ? (
+                <RiBuildingLine />
+              ) : (
+                <RiUser3Fill />
+              )}{" "}
               {repo.owner.login}
             </small>
           </Card.Link>
@@ -114,7 +118,7 @@ export default function Repostory(params) {
       </Card.Body>
       <Card.Footer>
         <Card.Link className="text-muted">
-          <BiGitRepoForked />({repo.forkCount})
+          <GoRepoForked />({repo.forkCount})
         </Card.Link>
         <Card.Link className="text-muted">
           <AiOutlineStar />({repo.stargazerCount})
@@ -124,7 +128,7 @@ export default function Repostory(params) {
         </Card.Link>
         {repo.languages.nodes.map((node) => (
           <Card.Link key={node.id} className="text-muted">
-            <VscCircleFilled color={node.color} />
+            <CgPlayStop color={node.color} />
             {node.name}
           </Card.Link>
         ))}
