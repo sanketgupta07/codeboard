@@ -7,7 +7,7 @@ export default function AppNav() {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/codeboard">
           <RiDashboardFill />
         </Navbar.Brand>
         <Nav className="mr-auto">
