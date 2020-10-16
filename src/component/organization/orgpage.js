@@ -28,9 +28,15 @@ export default function OrgPage(params) {
           <UserInput onSubmit={updateOrg} text="Search Org" />
         </div>
       </Jumbotron>
-      <Organization login={org} repos={loadRepoList} />
-      <br />
-      <RepositoryList login={org} load={loadRepos} />
+      {org === "" ? (
+        ""
+      ) : (
+        <>
+          <Organization login={org} repos={loadRepoList} />
+          <br />
+          <RepositoryList login={org} load={loadRepos} />
+        </>
+      )}
     </>
   );
 }
