@@ -20,7 +20,7 @@ function AppRouter(params) {
   };
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/codeboard">
         <AppNav />
         <Container fluid>
           <Row>
