@@ -13,7 +13,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     },
   }));
 
-  // console.log(process.env.REACT_APP_GITHUB_ACCESS_TOKEN);
+  console.log(process.env.REACT_APP_GITHUB_TEST);
   return forward(operation);
 });
 

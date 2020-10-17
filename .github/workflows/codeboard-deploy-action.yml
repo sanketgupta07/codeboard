@@ -31,6 +31,7 @@ jobs:
           npm run-script build
         env:
           REACT_APP_GITHUB_ACCESS_TOKEN: ${{ secrets.REACT_APP_GITHUB_ACCESS_TOKEN }}
+          REACT_APP_GITHUB_TEST: ${{secrets.REACT_APP_GITHUB_TEST}}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
