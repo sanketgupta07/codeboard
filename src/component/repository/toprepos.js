@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CardColumns, Spinner } from "react-bootstrap";
+import { CardColumns, Col, Spinner } from "react-bootstrap";
 import Repostory from "./repository";
 
 export default function TopRepo(params) {
@@ -28,10 +28,12 @@ export default function TopRepo(params) {
       </>
     );
   return (
-    <CardColumns>
-      {data.items.map((node) => (
-        <Repostory key={node.id} name={node.name} login={node.owner.login} />
-      ))}
-    </CardColumns>
+    <Col className="app-center" sm="10">
+      <CardColumns>
+        {data.items.map((node) => (
+          <Repostory key={node.id} name={node.name} login={node.owner.login} />
+        ))}
+      </CardColumns>
+    </Col>
   );
 }
