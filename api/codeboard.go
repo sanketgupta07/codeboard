@@ -42,7 +42,7 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 	}
 	token, err := oauthConf.Exchange(oauth2.NoContext, d.Code)
 	if err != nil {
-		fmt.Printf("oauthConf.Exchange() failed with '%s'\n", err)
+		log.Printf("oauthConf.Exchange() failed with '%s'\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
@@ -51,11 +51,11 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 	client := github.NewClient(oauthClient)
 	user, _, err := client.Users.Get(oauth2.NoContext, "")
 	if err != nil {
-		fmt.Printf("client.Users.Get() faled with '%s'\n", err)
+		log.Printf("client.Users.Get() faled with '%s'\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
-	fmt.Printf("Logged in as GitHub user: %s\n", user)
+	log.Printf("Logged in as GitHub user: %s\n", user)
 	usrData := userData{
 		token: *token,
 		user:  *user,
