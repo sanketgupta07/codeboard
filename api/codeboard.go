@@ -16,7 +16,6 @@ type data struct {
 	ID   string `json:"client_id"`
 	URI  string `json:"redirect_uri"`
 	Code string `json:"code"`
-	// Secret string `json:"client_secret"`
 }
 
 type userData struct {
@@ -35,7 +34,6 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Print(err)
 	}
-	log.Println("Data: ", d)
 	oauthConf := &oauth2.Config{
 		ClientID:     d.ID,
 		ClientSecret: os.Getenv("CLIENT_SECRET"),
@@ -62,6 +60,6 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 		token: *token,
 		user:  *user,
 	}
-	fmt.Println("userdata: ", usrData)
+	log.Println("User:", usrData.user.Login)
 	json.NewEncoder(w).Encode(token)
 }
