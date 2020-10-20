@@ -27,7 +27,8 @@ export default function Organization(params) {
     return (
       <>
         <RiErrorWarningLine style={{ color: "red" }} />
-        &nbsp; Oops..an Error
+        &nbsp; Oops..an Error &nbsp;
+        {error}
       </>
     );
   // console.log(data);

@@ -5,15 +5,14 @@ require("dotenv").config();
 const httpLink = new HttpLink({ uri: "https://api.github.com/graphql" });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-  // add the authorization to the headers
+  const token = JSON.parse(localStorage.getItem("access_token"));
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      authorization: `Bearer ${process.env.REACT_APP_GITHUB_ACCESS_TOKEN}`,
+      authorization: "Bearer " + token,
     },
   }));
 
-  console.log(process.env.REACT_APP_GITHUB_TEST);
   return forward(operation);
 });
 

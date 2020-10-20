@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, ListGroup } from "react-bootstrap";
+import { Card, Col, Form, ListGroup } from "react-bootstrap";
 
 export default function RankNav(params) {
   const [navState, setNavState] = useState({
@@ -32,44 +32,46 @@ export default function RankNav(params) {
     "C",
   ];
   return (
-    <Card bg="light" text="dark">
-      <Card.Header>
-        <Form>
-          <Form.Group>
-            <Form.Label>Top 10 Most</Form.Label>
-            <Form.Control
-              as="select"
-              size="sm"
-              custom
-              onChange={(event) =>
-                setNavState({ ...navState, filter: event.target.value })
-              }
-            >
-              <option defaultValue value="forks">
-                Forks
-              </option>
-              <option value="stars">Stars</option>
-              <option value="watchers">Watchers</option>
-            </Form.Control>
-          </Form.Group>
-        </Form>
-      </Card.Header>
-      <Card.Footer>Language Filter</Card.Footer>
-      <ListGroup as="ul" variant="flush">
-        {languages.map((lang) => (
-          <ListGroup.Item as="li" key={Math.random()} variant="light">
-            <Card.Link
-              as="a"
-              onClick={() =>
-                setNavState({ ...navState, language: lang.toLowerCase() })
-              }
-              href="#"
-            >
-              {lang}
-            </Card.Link>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </Card>
+    <Col className="app-left" sm="2">
+      <Card bg="light" text="dark">
+        <Card.Header>
+          <Form>
+            <Form.Group>
+              <Form.Label>Top 10 Most</Form.Label>
+              <Form.Control
+                as="select"
+                size="sm"
+                custom
+                onChange={(event) =>
+                  setNavState({ ...navState, filter: event.target.value })
+                }
+              >
+                <option defaultValue value="forks">
+                  Forks
+                </option>
+                <option value="stars">Stars</option>
+                <option value="watchers">Watchers</option>
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </Card.Header>
+        <Card.Footer>Language Filter</Card.Footer>
+        <ListGroup as="ul" variant="flush">
+          {languages.map((lang) => (
+            <ListGroup.Item as="li" key={Math.random()} variant="light">
+              <Card.Link
+                as="a"
+                onClick={() =>
+                  setNavState({ ...navState, language: lang.toLowerCase() })
+                }
+                href="#"
+              >
+                {lang}
+              </Card.Link>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Card>
+    </Col>
   );
 }

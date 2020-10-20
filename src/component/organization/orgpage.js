@@ -9,7 +9,6 @@ export default function OrgPage(params) {
   const [org, setOrg] = useState("");
   const [loadRepos, setLoadRepos] = useState(false);
   const updateOrg = (name) => {
-    console.log(name);
     setOrg(name);
     setLoadRepos(false);
   };
