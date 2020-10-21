@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Jumbotron } from "react-bootstrap";
 import { AiOutlineGithub } from "react-icons/ai";
-import { RiDashboardFill } from "react-icons/ri";
+import { RiDashboardFill, RiErrorWarningLine } from "react-icons/ri";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../router";
 
@@ -43,7 +43,12 @@ export default function Login() {
         .catch((error) => {
           setData({
             isLoading: false,
-            errorMessage: "Login failed!",
+            errorMessage: (
+              <>
+                <RiErrorWarningLine style={{ color: "red" }} />
+                &nbsp; Oops..an Error &nbsp; Login Failed!
+              </>
+            ),
           });
         });
     }
@@ -76,9 +81,7 @@ export default function Login() {
           )}
         </Button>
       </p>
-      <span>
-        {data.errorMessage?}
-      </span>
+      <span>{data.errorMessage}</span>
     </Jumbotron>
   );
 }
