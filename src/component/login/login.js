@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Jumbotron } from "react-bootstrap";
 import { AiOutlineGithub } from "react-icons/ai";
-import { RiDashboardFill } from "react-icons/ri";
+import { RiDashboardFill, RiErrorWarningLine } from "react-icons/ri";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../router";
 
@@ -29,7 +29,7 @@ export default function Login() {
       };
 
       // Use code parameter and other parameters to make POST request to proxy_server
-      fetch("/api/codeboard", {
+      fetch(process.env.REACT_APP_GO_API, {
         method: "POST",
         body: JSON.stringify(requestData),
       })
@@ -76,7 +76,11 @@ export default function Login() {
           )}
         </Button>
       </p>
-      <span>{data.errorMessage}</span>
+      <span>
+        <RiErrorWarningLine style={{ color: "red" }} />
+        &nbsp; Oops..an Error &nbsp;
+        {data.errorMessage}
+      </span>
     </Jumbotron>
   );
 }

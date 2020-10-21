@@ -18,10 +18,10 @@ type data struct {
 	Code string `json:"code"`
 }
 
-type userData struct {
-	user  github.User
-	token oauth2.Token
-}
+// type userData struct {
+// 	user github.User
+// 	// token oauth2.Token
+// }
 
 //Auth ... function to authnticate request
 func Auth(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +42,7 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 	}
 	token, err := oauthConf.Exchange(oauth2.NoContext, d.Code)
 	if err != nil {
-		log.Printf("oauthConf.Exchange() failed with '%s'\n", err)
+		fmt.Printf("oauthConf.Exchange() failed with '%s'\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
@@ -51,15 +51,10 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 	client := github.NewClient(oauthClient)
 	user, _, err := client.Users.Get(oauth2.NoContext, "")
 	if err != nil {
-		log.Printf("client.Users.Get() faled with '%s'\n", err)
+		fmt.Printf("client.Users.Get() faled with '%s'\n", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
-	log.Printf("Logged in as GitHub user: %s\n", user)
-	usrData := userData{
-		token: *token,
-		user:  *user,
-	}
-	log.Println("User:", usrData.user.Login)
+	fmt.Printf("Logged in as GitHub user: %s\n", user.GetName())
 	json.NewEncoder(w).Encode(token)
 }
