@@ -63,11 +63,17 @@ export default function Login() {
         <Button
           variant="success"
           onClick={() => {
-            setData({ ...data, errorMessage: "" });
+            setData({ ...data, errorMessage: "", isLoading: true });
           }}
           href={`https://github.com/login/oauth/authorize?scope=user%20read:org&client_id=${client_id}&redirect_uri=${redirect_uri}`}
         >
-          <AiOutlineGithub /> Sign in with Github
+          {data.isLoading ? (
+            "Loading..."
+          ) : (
+            <>
+              <AiOutlineGithub /> Sign in with Github
+            </>
+          )}
         </Button>
       </p>
       <span>{data.errorMessage}</span>
