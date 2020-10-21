@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Jumbotron } from "react-bootstrap";
 import { AiOutlineGithub } from "react-icons/ai";
-import { RiDashboardFill, RiErrorWarningLine } from "react-icons/ri";
+import { RiDashboardFill } from "react-icons/ri";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../router";
 
@@ -58,7 +58,7 @@ export default function Login() {
       <h1>
         <RiDashboardFill /> Codeboard
       </h1>
-      <p>An app developed using React, GraphQL and Github Api</p>
+      <p>An app developed using React, Go, GraphQL and Github Api</p>
       <p>
         <Button
           variant="success"
@@ -77,9 +77,7 @@ export default function Login() {
         </Button>
       </p>
       <span>
-        <RiErrorWarningLine style={{ color: "red" }} />
-        &nbsp; Oops..an Error &nbsp;
-        {data.errorMessage}
+        {data.errorMessage?}
       </span>
     </Jumbotron>
   );

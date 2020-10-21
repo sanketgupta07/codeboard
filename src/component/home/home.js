@@ -8,7 +8,7 @@ export default function Home(params) {
       <h1>
         <RiDashboardFill /> Codeboard
       </h1>
-      <p>An app developed using React, GraphQL and Github Api</p>
+      <p>An app developed using React, Go, GraphQL and Github Api</p>
     </Jumbotron>
   );
 }
