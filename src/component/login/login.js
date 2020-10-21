@@ -58,7 +58,7 @@ export default function Login() {
       <h1>
         <RiDashboardFill /> Codeboard
       </h1>
-      <p>An app developed using React, GraphQL and Github Api</p>
+      <p>An app developed using React, Go, GraphQL and Github Api</p>
       <p>
         <Button
           variant="success"
