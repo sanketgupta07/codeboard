@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CardColumns, Col, Spinner } from "react-bootstrap";
+import { AuthContext } from "../../router";
 import Repostory from "./repository";
 
 export default function TopRepo(params) {
+  const { state } = useContext(AuthContext);
   const [appState, setAppState] = useState(false);
   const [data, setData] = useState({
     items: [],
@@ -12,13 +14,18 @@ export default function TopRepo(params) {
   useEffect(() => {
     setAppState(true);
     const fetchData = async () => {
-      const result = await fetch(params.url);
+      const result = await fetch(params.url, {
+        method: "get",
+        headers: new Headers({
+          Authorization: "token " + state.access_token,
+        }),
+      });
       const respData = await result.json();
       setData(respData);
       setAppState(false);
     };
     fetchData();
-  }, [params.url]);
+  }, [params.url, state.access_token]);
   if (appState)
     return (
       <>
