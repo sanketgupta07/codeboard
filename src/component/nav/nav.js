@@ -19,7 +19,7 @@ export default function AppNav() {
     <>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand as={Link} to="/">
-          <RiDashboardFill />
+          <RiDashboardFill /> Codeboard
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} className="nav-link" to="toprepo">
@@ -42,6 +42,7 @@ export default function AppNav() {
           )}
         </Nav>
       </Navbar>
+      &nbsp;
     </>
   );
 }
