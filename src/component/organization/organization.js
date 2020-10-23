@@ -17,23 +17,32 @@ const GET_USER = gql`
   }
 `;
 export default function Organization(params) {
-  const { loading, error, data } = useQuery(GET_USER, {
+  const { loading, errors, data } = useQuery(GET_USER, {
     variables: { login: params.login },
   });
   if (params.login === "") return <></>;
   // console.log(error);
   if (loading) return <Spinner animation="grow" variant="light" size="sm" />;
-  if (error)
+  if (errors) {
     return (
       <>
         <RiErrorWarningLine style={{ color: "red" }} />
         &nbsp; Oops..an Error &nbsp;
-        {error}
+        {errors}
       </>
     );
+  } else if (data === undefined) {
+    return (
+      <>
+        <RiErrorWarningLine style={{ color: "red" }} />
+        &nbsp; Organization "{params.login}" not found &nbsp;
+      </>
+    );
+  }
+
   // console.log(data);
   return (
-    <Card bg="dark" text="white" style={{ width: "18rem" }}>
+    <Card bg="dark" text="white">
       <Card.Img variant="top" src={data.organization.avatarUrl} />
       <Card.Body>
         <Card.Title>{data.organization.name} </Card.Title>

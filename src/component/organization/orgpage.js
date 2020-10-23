@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Jumbotron } from "react-bootstrap";
+import { Col, Jumbotron, Row } from "react-bootstrap";
 import { BiBuildings } from "react-icons/bi";
 import UserInput from "../form/inputform";
 import Organization from "../organization/organization";
@@ -17,25 +17,33 @@ export default function OrgPage(params) {
   };
   return (
     <>
-      <Jumbotron fluid style={{ background: "none" }}>
-        <h1>
-          <BiBuildings />
-          &nbsp;Organization
-        </h1>
-        <p>Search an organization of Github and check its repo.</p>
-        <div className="col-sm-4">
-          <UserInput onSubmit={updateOrg} text="Search Org" />
-        </div>
-      </Jumbotron>
-      {org === "" ? (
-        ""
-      ) : (
-        <>
-          <Organization login={org} repos={loadRepoList} />
-          <br />
-          <RepositoryList login={org} load={loadRepos} />
-        </>
-      )}
+      <Row>
+        <Col sm={8}>
+          <Jumbotron fluid style={{ background: "none" }}>
+            <h1>
+              <BiBuildings />
+              &nbsp;Organization
+            </h1>
+            <p>Search an organization of Github and check its repo.</p>
+            <div className="col-sm-6">
+              <UserInput onSubmit={updateOrg} text="Search Org" />
+            </div>
+          </Jumbotron>
+        </Col>
+        <Col sm={3}>
+          {org === "" ? "" : <Organization login={org} repos={loadRepoList} />}
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        {org === "" ? (
+          ""
+        ) : (
+          <>
+            <RepositoryList login={org} load={loadRepos} />
+          </>
+        )}
+      </Row>
     </>
   );
 }
