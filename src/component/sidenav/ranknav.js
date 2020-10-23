@@ -108,7 +108,7 @@ export default function RankNav(params) {
             </Card.Header>
           </Form>
         </Card>
-        &nbsp;
+        <br />
         <Card bg="light" text="dark">
           <Card.Header>
             Fetched data details
@@ -118,6 +118,7 @@ export default function RankNav(params) {
             <Badge variant="primary">{navState.language}</Badge>
           </Card.Header>
         </Card>
+        <br />
       </Col>
     </>
   );

@@ -17,30 +17,33 @@ export default function AppNav() {
   };
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
         <Navbar.Brand as={Link} to="/">
           <RiDashboardFill /> Codeboard
         </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} className="nav-link" to="toprepo">
-            Top Most Repo
-          </Nav.Link>
-          <Nav.Link as={Link} className="nav-link" to="org">
-            Organization
-          </Nav.Link>
-          <Nav.Link as={Link} className="nav-link" to="about">
-            About Us
-          </Nav.Link>
-        </Nav>
-        <Nav>
-          {state.isLoggedIn ? (
-            <Button variant="danger" onClick={() => handleLogout()}>
-              Logout
-            </Button>
-          ) : (
-            ""
-          )}
-        </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link as={Link} className="nav-link" to="toprepo">
+              Top Most Repo
+            </Nav.Link>
+            <Nav.Link as={Link} className="nav-link" to="org">
+              Organization
+            </Nav.Link>
+            <Nav.Link as={Link} className="nav-link" to="about">
+              About Us
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            {state.isLoggedIn ? (
+              <Button variant="danger" onClick={() => handleLogout()}>
+                Logout
+              </Button>
+            ) : (
+              ""
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
       &nbsp;
     </>
