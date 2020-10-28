@@ -7,6 +7,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 const GET_USER = gql`
   query getOrg($login: String!) {
     organization(login: $login) {
+      login
       name
       description
       avatarUrl
@@ -20,18 +21,23 @@ export default function Organization(params) {
   const { loading, errors, data } = useQuery(GET_USER, {
     variables: { login: params.login },
   });
-  if (params.login === "") return <></>;
-  // console.log(error);
   if (loading) return <Spinner animation="grow" variant="light" size="sm" />;
-  if (errors) {
+  if (params.login === "") {
+    return <></>;
+  } else if (errors) {
     return (
       <>
         <RiErrorWarningLine style={{ color: "red" }} />
         &nbsp; Oops..an Error &nbsp;
-        {errors}
+        {errors.message}
       </>
     );
-  } else if (data === undefined) {
+  } else if (
+    data === undefined ||
+    (params.login !== "" &&
+      data !== undefined &&
+      params.login !== data.organization.login)
+  ) {
     return (
       <>
         <RiErrorWarningLine style={{ color: "red" }} />
